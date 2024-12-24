@@ -1,0 +1,10 @@
+name: Release-Inv
+
+on:
+  push:
+    tags:
+      - 'v*'
+    tags-ignore:
+      -
+
+jobs:
