@@ -3,7 +3,7 @@ name: Release-Inv
 on:
   push:
     tags:
-      - admin.**
+      - admin***
 
 jobs:
   build:
