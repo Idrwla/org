@@ -3,11 +3,11 @@ name: Release-Inv
 on:
   push:
     tags:
-      - admin1.**
+      - inv.*.*.*
 
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - name: test
         run: echo 'test ci '
