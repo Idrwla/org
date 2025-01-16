@@ -10,7 +10,14 @@ permissions:
   contents: read
 
 jobs:
+  first_j:
+    runs-on: ubuntu-latest
+    steps:
+      - name:
+        run: echo 'First jobdfdfvfd'
+
   update_release_draft:
+    needs: [ first_j ]
     permissions:
       contents: write
       pull-requests: write
