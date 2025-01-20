@@ -1,0 +1,26 @@
+name: releaser
+on:
+  release:
+    types: [published]
+
+jobs:
+  extract-tag-prefix:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Extract tag prefix and save it
+      - name: Extract tag prefix
+        id: extract_prefix
+        run: |
+          tag="${{ github.ref_name }}" # e.g., v1.0.0
+          prefix="${tag%%.*}"          # Extract everything before the first dot (e.g., "v")
+          echo "Tag: $tag"
+          echo "Prefix: $prefix"
+          echo "prefix=$prefix" >> $GITHUB_ENV # Save it as an environment variable
+          echo "::set-output name=prefix::$prefix" # Set it as an output for this step
+
+      # Step 2: Use the tag prefix in another step
+      - name: Use the extracted prefix
+        run: |
+          echo "Using the tag prefix from the environment: ${{ env.prefix }}"
+          echo "Using the tag prefix from the step output: ${{ steps.extract_prefix.outputs.prefix }}"
